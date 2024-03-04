@@ -1,7 +1,5 @@
-import { Medal } from "lucide-react";
+import { Star } from "lucide-react";
 import Link from "next/link";
-import { Poppins } from "next/font/google";
-import localFont from "next/font/local"
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -11,7 +9,7 @@ const marketingPage = () => {
         <div className="flex items-center justify-center flex-col">
             <div className={cn("flex items-center justify-center flex-col")}>
                 <div className="mb-4 flex items-center border shadow-sm p-4 bg-amber-100 text-amber-700 rounded-full uppercase">
-                    <Medal className="h-6 w-6 mr-2"/>
+                    <Star className="h-6 w-6 mr-2"/>
                     ME2073
                 </div>
                 <h1 className="text-3xl md:text-6xl text-center text-neutral-800 mb-6"> 
@@ -27,7 +25,7 @@ const marketingPage = () => {
             </div>
             <Button className="mt-6 size=lg" asChild>
                 <Link href="/">
-                    Learn more about the project and the team
+                    Learn more about the project
                 </Link>
             </Button>
         </div>
