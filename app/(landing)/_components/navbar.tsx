@@ -23,7 +23,7 @@ export const Navbar = () => {
                     </Button>
                 </div>
                 <Button size="sm" variant="default" asChild className="">
-                        <Link href="/Demo">
+                        <Link href="/Demo/Courses">
                             Demo
                         </Link>
                 </Button>

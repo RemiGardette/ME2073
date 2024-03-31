@@ -10,10 +10,9 @@ const DemoLayout = ({
 {
     return (
         <ClerkProvider>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
-            <Footer />
-
+            {/* <Footer /> */}
         </ClerkProvider>
     )
 
