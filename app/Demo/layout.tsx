@@ -1,4 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import { Footer } from "@/components/ui/footer";
+import { Navbar } from "../(landing)/_components/navbar";
 
 const DemoLayout = ({
     children
@@ -6,9 +8,14 @@ const DemoLayout = ({
     children: React.ReactNode;
 }) => 
 {
-    return (<ClerkProvider>
-        {children}
-    </ClerkProvider>)
+    return (
+        <ClerkProvider>
+            <Navbar />
+            {children}
+            <Footer />
+
+        </ClerkProvider>
+    )
 
 }
 
