@@ -3,43 +3,82 @@ import Image from "next/image"
 
 const TeamPage = () => {
     return (
-        <div className="flex items-center justify-center flex-col">
-            <div className="text-3xl md:text-6xl to-pink-600 text-black px-4 p-2 rounded-md pb-4 w-fit">
-                Meet the team!
+        <div className="container mx-auto px-6 md:px-12 lg:px-8">
+            <div className="mb-12 text-center">
+                <h1 className="text-4xl font-bold text-gray-800">Meet the Team!</h1>
+
             </div>
-                <div className="flex flex-col md:flex-row items-center justify-center">
-                    <div className="flex flex-col items-center justify-center p-10">
-                        <Image src="/teampics/pic_stock.jpg" width={200} height={200} className="rounded-full shadow-md" alt="Ilse Westra"/>
-                        <div className="text-center text-5xl p-2">
-                            Ilse Westra
-                        </div>
+
+            <div className="py-20 grid gap-30 md:gap-12 md:grid-cols-5">
+                <div className="border-t-4 space-y-8 group">
+                    <div className="w-32 w-32 -mt-16 mx-auto rounded-[2rem] rotate-45 overflow-hidden">
+                        <Image src="/teampics/pic_stock.jpg" width="200" height="200" loading="lazy" alt="Team Member" className="w-full h-full object-cover -rotate-45 scale-125 mx-auto transition duration-300 group-hover:scale-[1.4]" />
                     </div>
-                    <div className="flex flex-col items-center justify-center p-10">
-                        <Image src="/teampics/pic_stock.jpg" width={200} height={200} className="rounded-full shadow-md" alt="Zhinan Gao"/>
-                        <div className="text-center text-5xl p-2">
-                            Zhinan Gao
-                        </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-center p-10">
-                        <Image src="/teampics/pic_stock.jpg" width={200} height={200} className="rounded-full shadow-md" alt="Erik Blondell" />
-                        <div className="text-center text-5xl p-2">
-                            Erik Blondell
-                        </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-center p-10">
-                        <Image src="/teampics/pic_stock.jpg" width={200} height={200} className="rounded-full shadow-md" alt="Remi Gardette"/>
-                        <div className="text-center text-5xl p-2">
-                            Remi Gardette
-                        </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-center p-10">
-                        <Image src="/teampics/pic_stock.jpg" width={200} height={200} className="rounded-full shadow-md" alt="Redve Ahmed"/>
-                        <div className="text-center text-5xl p-2">
+                    <div className="text-center">
+                        <h5 className="text-xl font font-semibold">
                             Redve Ahmed
-                        </div>
+                        </h5>
+                        <span>
+                            M.S.c. ICT Innovation Cloud and Network Infrastructure
+                        </span>
                     </div>
                 </div>
+                <div className="border-t-4 space-y-8 group">
+                    <div className="w-32 w-32 -mt-16 mx-auto rounded-[2rem] rotate-45 overflow-hidden">
+                        <Image src="/teampics/pic_stock.jpg" width="200" height="200" loading="lazy" alt="Team Member" className="w-full h-full object-cover -rotate-45 scale-125 mx-auto transition duration-300 group-hover:scale-[1.4]" />
+                    </div>
+                    <div className="text-center">
+                        <h5 className="text-xl font font-semibold">
+                            Ilse Westra
+                        </h5>
+                        <span>
+                            Exchange at KTH
+                        </span>
+                    </div>
+                </div>
+                <div className="border-t-4 space-y-8 group">
+                    <div className="w-32 w-32 -mt-16 mx-auto rounded-[2rem] rotate-45 overflow-hidden">
+                        <Image src="/teampics/pic_stock.jpg" width="200" height="200" loading="lazy" alt="Team Member" className="w-full h-full object-cover -rotate-45 scale-125 mx-auto transition duration-300 group-hover:scale-[1.4]" />
+                    </div>
+                    <div className="text-center">
+                        <h5 className="text-xl font font-semibold">
+                            Remi Gardette
+                        </h5>
+                        <span>
+                            M.S.c. ICT Innovation Cloud and Network Infrastructure
+                        </span>
+                    </div>
+                </div>
+                <div className="border-t-4 space-y-8 group">
+                    <div className="w-32 w-32 -mt-16 mx-auto rounded-[2rem] rotate-45 overflow-hidden">
+                        <Image src="/teampics/pic_stock.jpg" width="200" height="200" loading="lazy" alt="Team Member" className="w-full h-full object-cover -rotate-45 scale-125 mx-auto transition duration-300 group-hover:scale-[1.4]" />
+                    </div>
+                    <div className="text-center">
+                        <h5 className="text-xl font font-semibold">
+                            Zhinan Gao
+                        </h5>
+                        <span>
+                            Fill in later
+                        </span>
+                    </div>
+                </div>
+                <div className="border-t-4 space-y-8 group">
+                    <div className="w-32 w-32 -mt-16 mx-auto rounded-[2rem] rotate-45 overflow-hidden">
+                        <Image src="/teampics/pic_stock.jpg" width="200" height="200" loading="lazy" alt="Team Member" className="w-full h-full object-cover -rotate-45 scale-125 mx-auto transition duration-300 group-hover:scale-[1.4]" />
+                    </div>
+                    <div className="text-center">
+                        <h5 className="text-xl font font-semibold">
+                            Erik Blondell
+                        </h5>
+                        <span>
+                            Fill in later
+                        </span>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
     );
 }
 
