@@ -2,6 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import xml2js from 'xml2js';
 
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
 async function getCourseInfo(courseCode: string, language: string = 'en'): Promise<any> {
     try {
         const response = await axios.get(`https://api.kth.se/api/kopps/v1/course/${courseCode}/${language}`);
@@ -34,11 +38,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try {
             const courseInfoXml = await getCourseInfo(code);
             const courseInfo = await parseCourseInfo(courseInfoXml);
-            res.status(200).json(courseInfo);
+            try {
+                // Fetch all ratings for the course from the database
+                const ratings = await prisma.reviews.findMany();
+               res.status(200).json({ courseInfo, ratings });
+           }
+           catch (error){
+            res.status(200).json({ courseInfo });
+           }
         } catch (error) {
             console.error('Error fetching course information:', error);
             res.status(500).json({ error: 'Error fetching course information' });
         }
+        
     } else {
         res.status(405).end(); // Method Not Allowed
     }
