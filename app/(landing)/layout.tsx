@@ -1,4 +1,4 @@
-import { Footer } from "./_components/footer";
+import { Footer } from "@/components/ui/footer";
 import { Navbar } from "./_components/navbar";
 
 const landingLayout = ({children}: {children:React.ReactNode}) => {
