@@ -57,7 +57,6 @@ function extractCourseCodes(xmlData: string): string[] {
 // Function to fetch course details from course code
 async function fetchCourseTitle(courseCode: string) {
     try {
-        console.log(courseCode);
         const courseDetailsUrl = `https://api.kth.se/api/kopps/v1/course/${courseCode}/en`;
         const response = await axios.get(courseDetailsUrl);
         const courseTitle = extractCourseTitle(response.data);
@@ -85,7 +84,6 @@ function extractCourseTitle(xml: string): string {
             englishTitleText = englishTitle ? englishTitle['_'] : '';
         }
     });
-    console.log(englishTitleText);
     return englishTitleText;
 }
 
