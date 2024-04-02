@@ -1,5 +1,7 @@
 // seed.ts
 
+import { create } from "domain";
+
 const { PrismaClient } = require('@prisma/client');
 const axios = require('axios');
 const xml2js = require('xml2js');
@@ -101,12 +103,12 @@ async function fetchAndStoreCourses() {
             }
             const courseSite = `https://www.kth.se/student/kurser/kurs/${courseCodes[i]}?l=en`;
 
-            const insert_course = await prisma.course.create({
-                data: {
-                    courseName : courseTitle,
-                    courseId : courseCodes[i],
-                    courseSite: courseSite
-                }
+            const insert_course = await prisma.course.upsert({
+                where :{courseName: courseTitle,
+                    courseId: courseCodes[i],
+                    courseSite: courseSite},
+                update: {},
+                create: {courseName: courseTitle, courseId: courseCodes[i], courseSite: courseSite}
             })
         }
     } catch (error) {
@@ -120,23 +122,23 @@ async function seed() {
     // Fetch and stores all 2024 courses
     fetchAndStoreCourses();
     // Create a user named "bob"
-    const bob = await prisma.user.create({
-      data: {
-        email: 'bob@example.com', // Set the email for "bob"
-        name: 'Bob', // Set the name for "bob"
-        role: 'USER', // Set the role for "bob" (assuming USER is a valid role)
-      },
-    });
+    // const bob = await prisma.user.create({
+    //   data: {
+    //     email: 'bob@example.com', // Set the email for "bob"
+    //     name: 'Bob', // Set the name for "bob"
+    //     role: 'USER', // Set the role for "bob" (assuming USER is a valid role)
+    //   },
+    // });
 
     // Insert the example review data into the database
-    await prisma.reviews.create({
-      data: {
-        title: 'Example Review', // Set the title of the review
-        userId: bob.id, // Set the userId to the id of "bob"
-        reviewText: 'This is an example review.', // Set the review text
+    // await prisma.reviews.create({
+    //   data: {
+    //     title: 'Example Review', // Set the title of the review
+    //     userId: bob.id, // Set the userId to the id of "bob"
+    //     reviewText: 'This is an example review.', // Set the review text
 
-      },
-    });
+    //   },
+    // });
 
     console.log('Seed data inserted successfully');
   } catch (error) {

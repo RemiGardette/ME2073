@@ -56,7 +56,7 @@ model CourseEvals {
 model Course {
   id         Int       @id @default(autoincrement())
   courseName String
-  courseId   String
+  courseId   String    @unique
   courseSite String
   reviews    Reviews[]
 }
