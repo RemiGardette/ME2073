@@ -4,8 +4,12 @@ import CourseResarchToolbar from '@/components/ui/coursetoolbar';
 
 const DemoPage = () => {
     return (
-        <div>
-            <h1>Place holder for demo of the actual application</h1>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '100vh', // Adjust height as needed
+        }}>
             <CourseResarchToolbar />
         </div>
     );
