@@ -2,7 +2,7 @@
 
 import { create } from "domain";
 
-const { PrismaClient } = require('@prisma/client');
+  const { PrismaClient } = require('@prisma/client');
 const axios = require('axios');
 const xml2js = require('xml2js');
 

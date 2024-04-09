@@ -4,13 +4,14 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Example {
@@ -36,12 +37,11 @@ model Reviews {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   title       String
-  user        User          @relation(fields: [userId], references: [id])
-  userId      Int
+  userId      String
   reviewText  String
   ratings     Ratings[]
-  Course      Course?       @relation(fields: [courseId], references: [id])
-  courseId    Int?
+  Course      Course?       @relation(fields: [courseId], references: [courseId])
+  courseId    String?
   courseEvals CourseEvals[]
 }
 
@@ -61,16 +61,16 @@ model Course {
   reviews    Reviews[]
 }
 
-model User {
-  id       Int       @id @default(autoincrement())
-  // email    String    @unique
-  name     String?
-  // password String?
-  // role     Role      @default(USER)
-  reviews  Reviews[]
-}
+// model User {
+//   id       Int       @id @default(autoincrement())
+//   // email    String    @unique
+//   name     String?
+//   // password String?
+//   // role     Role      @default(USER)
+//   reviews  Reviews[]
+// }
 
-enum Role {
-  USER
-  ADMIN
-}
+// enum Role {
+//   USER
+//   ADMIN
+// }
