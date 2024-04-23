@@ -58,7 +58,7 @@ const TeamPage = () => {
                             Zhinan Gao
                         </h5>
                         <span>
-                            Fill in later
+                        M.S.c. ICT Innovation Autonomous Systems
                         </span>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ const TeamPage = () => {
                             Erik Blondell
                         </h5>
                         <span>
-                            Fill in later
+                        M.S.c. ICT Innovation Data Science
                         </span>
                     </div>
                 </div>

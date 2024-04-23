@@ -16,19 +16,34 @@ async function getCourseInfo(courseCode: string, language: string = 'en'): Promi
     }
 }
 
-function parseCourseInfo(courseInfoXml: string): any {
-    return new Promise((resolve, reject) => {
-        xml2js.parseString(courseInfoXml, (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
-    });
-}
+const parseXml = (xmlString: string): any => {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+    const courseNode = xmlDoc.getElementsByTagName('course')[0];
+  
+    const courseCode = courseNode.getAttribute('code');
+    const title = courseNode.getElementsByTagName('title')[0].textContent;
+    const examiner = courseNode.getElementsByTagName('examiner')[0].textContent;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const creditCheck = courseNode.getElementsByTagName('credits')[0].textContent || "N/A";
+    var creditString: string;
+    if(creditCheck !== null){
+        creditString = creditCheck;
+    }
+    else{
+        creditString = "N/A";
+    }
+    const credits = parseFloat(creditString);
+  
+    return {
+      courseCode,
+      title,
+      examiner,
+      credits
+    };
+  };
+
+  export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         const { code } = req.query;
         if (!code || typeof code !== 'string') {
@@ -36,21 +51,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
         }
         try {
+            // Assume getCourseInfo function retrieves XML content for a given course code
             const courseInfoXml = await getCourseInfo(code);
-            const courseInfo = await parseCourseInfo(courseInfoXml);
-            try {
-                // Fetch all ratings for the course from the database
-                const ratings = await prisma.reviews.findMany();
-               res.status(200).json({ courseInfo, ratings });
-           }
-           catch (error){
+            const courseInfo = await parseXml(courseInfoXml); // Use the parseXml function from the previous example
             res.status(200).json({ courseInfo });
-           }
         } catch (error) {
             console.error('Error fetching course information:', error);
             res.status(500).json({ error: 'Error fetching course information' });
         }
-        
     } else {
         res.status(405).end(); // Method Not Allowed
     }

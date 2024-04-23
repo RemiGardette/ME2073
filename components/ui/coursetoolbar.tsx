@@ -47,9 +47,6 @@ const CourseResearchToolbar: React.FC = () => {
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
             />
-            <Button onClick={handleSearch}>
-                &#128269; {/* Unicode for magnifying glass */}
-            </Button>
             {error && <p>{error}</p>}
         </div>
     );
